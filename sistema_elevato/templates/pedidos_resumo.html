@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Elevato - Resumo do Pedido</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="painel-body">
+    <nav class="navbar">
+        <div class="logo-nav">ELEVATO <span>L&O</span></div>
+        <div class="user-info">
+            <a href="{{ url_for('pedidos_servicos') }}" style="color:white; margin-right:20px;">Voltar: Serviços</a>
+        </div>
+    </nav>
+
+    <div class="container-painel">
+        <h2 class="titulo-secao">3. Cadastro - Resumo</h2>
+
+        <div class="card-secao">
+            <div style="background-color: #f8f9fa; padding: 15px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid var(--azul-elevato);">
+                <p><strong>Contratante (ID):</strong> {{ carrinho.cliente.get('id_cliente', 'Nenhum') }}</p>
+                <p><strong>Endereço do Evento:</strong> {{ carrinho.cliente.get('endereco', '') }}, {{ carrinho.cliente.get('numero', '') }} - {{ carrinho.cliente.get('cidade', '') }}</p>
+            </div>
+
+            <h3>Lista de Serviços / Materiais</h3>
+            <table class="tabela-servicos">
+                <thead>
+                    <tr>
+                        <th>Material / Serviço</th>
+                        <th>Qtd.</th>
+                        <th>Vl. Unitário</th>
+                        <th>Vl. Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for servico in carrinho.servicos %}
+                    <tr>
+                        <td>{{ servico.produto }} ({{ servico.tipo_servico }})</td>
+                        <td>{{ servico.qtd }}</td>
+                        <td>R$ {{ servico.valor_un }}</td>
+                        <td>R$ {{ servico.vl_total }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="4" style="text-align: center; color: #888;">Nenhum serviço para exibir.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="total-pedido" style="margin-top: 30px; border-top: 2px solid var(--laranja-elevato); padding-top: 15px;">
+                TOTAL GERAL: <span style="font-size: 28px;">R$ {{ "%.2f"|format(total_geral) }}</span>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+                <a href="{{ url_for('pedidos_servicos') }}" class="btn-cancelar" style="text-decoration: none; padding: 15px 30px; font-size: 16px;">Adicionar Mais Materiais</a>
+                
+                <form action="#" method="POST">
+                    <button type="submit" class="btn-finalizar">FINALIZAR PEDIDO</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

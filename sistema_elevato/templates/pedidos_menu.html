@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block titulo_tela %}PEDIDOS{% endblock %}
+
+{% block content %}
+<div style="max-width: 1000px; margin: 0 auto; padding: 20px; position: relative;">
+
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+        <a href="{{ url_for('pedidos_novo') }}" 
+           style="background-color: var(--laranja-elevato); color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+           <span style="font-size: 18px;">+</span> NOVO PEDIDO
+        </a>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <h1 style="color: var(--azul-elevato); font-size: 32px; margin-bottom: 10px;">Etapas do Pedido</h1>
+        <p style="color: #666; font-size: 16px;">Selecione o passo desejado para continuar a estruturação.</p>
+    </div>
+
+    <div class="menu-grid">
+        <a href="{{ url_for('pedidos_cliente') }}" class="menu-card">
+            <div style="font-size: 40px; margin-bottom: 15px;">👥</div>
+            <h3>1. Infos Clientes</h3>
+            <p>Cadastre ou selecione o contratante e local do evento.</p>
+        </a>
+        
+        <a href="{{ url_for('pedidos_servicos') }}" class="menu-card">
+            <div style="font-size: 40px; margin-bottom: 15px;">⛺</div>
+            <h3>2. Serviços</h3>
+            <p>Adicione equipamentos, tendas e itens ao pedido.</p>
+        </a>
+        
+        <a href="{{ url_for('pedidos_resumo') }}" class="menu-card" style="border-top-color: var(--laranja-elevato);">
+            <div style="font-size: 40px; margin-bottom: 15px;">📄</div>
+            <h3>3. Resumo</h3>
+            <p>Visualize, confira os totais e finalize o contrato.</p>
+        </a>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  elevato_web:
+    build: .
+    container_name: elevato_frontend
+    ports:
+      - "5000:5000"
+    # ESSA É A MÁGICA: Cria uma ponte direta para o seu computador
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped

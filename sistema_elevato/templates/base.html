@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevato L&O</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="painel-body">
+
+    <header class="navbar-top">
+        <div class="nav-left">
+            <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+            <div class="brand" style="margin-left: 15px;">
+                <span style="color: var(--azul-elevato);">ELEVATO</span>
+                <span class="brand-logo">L&O</span>
+            </div>
+        </div>
+
+        <div class="nav-center">
+            <h2 class="tela-titulo">{% block titulo_tela %}Painel{% endblock %}</h2>
+        </div>
+
+        <div class="nav-right">
+            <div class="user-badge">
+                <span class="icon-user">👤</span>
+                <span class="nome-usuario">{{ nome_usuario }}</span>
+            </div>
+            <div class="gear-menu">
+                <button class="gear-btn" onclick="toggleGear()">⚙️</button>
+                <div class="gear-dropdown" id="gearDropdown">
+                    <a href="{{ url_for('logout') }}">🚪 Sair do Sistema</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="sidebar" id="mySidebar">
+        <div class="sidebar-header">
+            <h3>Navegação</h3>
+            <button class="close-btn" onclick="toggleSidebar()">✖</button>
+        </div>
+        <a href="{{ url_for('pedidos_menu') }}">📋 Pedidos</a>
+        <a href="#">🕒 Histórico</a>
+        <a href="#">📅 Agenda</a>
+        <a href="#">📦 Material</a>
+        <a href="#">👥 Clientes</a>
+        <a href="#">📊 Dashboard</a>
+    </div>
+
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('mySidebar');
+            sidebar.style.left = sidebar.style.left === '0px' ? '-260px' : '0px';
+        }
+
+        function toggleGear() {
+            const dropdown = document.getElementById('gearDropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Fecha a engrenagem se clicar fora
+        window.onclick = function(event) {
+            if (!event.target.matches('.gear-btn')) {
+                const dropdowns = document.getElementsByClassName("gear-dropdown");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    if (dropdowns[i].style.display === 'block') {
+                        dropdowns[i].style.display = 'none';
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

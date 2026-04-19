@@ -1,0 +1,290 @@
+/* Variáveis com as cores da Logo */
+:root {
+    --azul-elevato: #00599c;
+    --laranja-elevato: #f47920;
+    --fundo-cinza: #f4f7f6;
+    --texto-escuro: #333333;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--fundo-cinza);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+    border-top: 5px solid var(--laranja-elevato);
+}
+
+.logo-title {
+    color: var(--azul-elevato);
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.logo-subtitle {
+    color: var(--laranja-elevato);
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    color: var(--azul-elevato);
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--laranja-elevato);
+}
+
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--azul-elevato);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-login:hover {
+    background-color: #00447a;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 20px;
+    color: var(--laranja-elevato);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.footer-tag {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #888;
+}
+
+.flash-message {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    border: 1px solid #ffcdd2;
+}
+
+/* ==================================
+   NOVOS ESTILOS - GRID E MODAL 
+   ================================== */
+
+.btn-azul {
+    background-color: var(--azul-elevato);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-azul:hover { background-color: #00447a; }
+
+.btn-cancelar {
+    background-color: transparent;
+    color: #666;
+    padding: 12px 24px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-cancelar:hover { background-color: #eee; }
+
+.grid-form-2col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+/* Telas menores adaptam para 1 coluna */
+@media (max-width: 768px) {
+    .grid-form-2col { grid-template-columns: 1fr; }
+}
+
+/* O fundo escuro do Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* A caixa branca do Modal */
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 650px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.acoes-tabela button {
+    background: none; border: none; font-size: 16px; cursor: pointer; margin-right: 5px;
+}
+.acoes-tabela button:hover { opacity: 0.7; }
+
+/* ==================================
+   CABEÇALHO GLOBAL (CHAPÉU FIXO)
+   ================================== */
+body.painel-body {
+    margin: 0; /* Tira as margens para o chapéu encostar nas bordas */
+    padding: 0;
+    background-color: #f8f9fa; /* Fundo cinza bem clarinho */
+}
+
+.navbar-top {
+    position: sticky; /* A mágica do chapéu fixo */
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white; /* Fundo branco igual ao seu site */
+    border-bottom: 2px solid var(--laranja-elevato); /* Linha laranja abaixo */
+    padding: 15px 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    z-index: 9999; /* Fica acima de tudo */
+}
+
+/* Deixando os ícones e textos do cabeçalho azuis */
+.menu-btn, .gear-btn {
+    background: none; border: none; font-size: 28px; cursor: pointer;
+    color: var(--azul-elevato); transition: transform 0.2s;
+}
+.menu-btn:hover, .gear-btn:hover { color: var(--laranja-elevato); transform: scale(1.1); }
+
+.tela-titulo {
+    margin: 0; font-size: 20px; font-weight: bold;
+    color: var(--azul-elevato); text-transform: uppercase;
+}
+
+.user-badge {
+    display: flex; align-items: center; gap: 10px;
+    border: 2px solid var(--azul-elevato);
+    border-radius: 50px;
+    padding: 6px 18px; font-size: 14px; font-weight: bold;
+    color: var(--azul-elevato);
+}
+
+/* ==================================
+   CARDS DO MENU CENTRALIZADOS
+   ================================== */
+.menu-grid {
+    display: flex;
+    justify-content: center; /* Centraliza tudo no meio da tela */
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap; /* Se a tela for pequena, eles caem para a linha de baixo */
+}
+
+.menu-card {
+    width: 250px;
+    background: white;
+    padding: 30px 20px;
+    border-radius: 12px;
+    text-align: center; /* Texto centralizado igual ao seu site */
+    text-decoration: none;
+    color: var(--texto-escuro);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-top: 5px solid var(--azul-elevato);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.menu-card:hover {
+    transform: translateY(-5px); /* Dá um pulinho pra cima */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border-color: var(--laranja-elevato);
+}
+
+.menu-card h3 { color: var(--azul-elevato); margin-top: 0; }
+
+/* ==================================
+   MENU LATERAL (SIDEBAR)
+   ================================== */
+.sidebar {
+    position: fixed; left: -260px; /* Escondido por padrão */
+    top: 0; width: 250px; height: 100%;
+    background-color: white; box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+    transition: left 0.3s ease; z-index: 2000;
+    display: flex; flex-direction: column;
+}
+
+.sidebar-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px; background-color: var(--azul-elevato); color: white;
+}
+.sidebar-header h3 { margin: 0; font-size: 18px; }
+.close-btn { background: none; border: none; color: white; font-size: 20px; cursor: pointer; }
+
+.sidebar a {
+    padding: 15px 20px; text-decoration: none; font-size: 16px;
+    color: var(--texto-escuro); font-weight: 600; border-bottom: 1px solid #eee;
+    transition: all 0.2s;
+}
+.sidebar a:hover { background-color: #f8f9fa; color: var(--laranja-elevato); padding-left: 25px; }
+
+/* Centraliza o conteúdo abaixo do Header */
+.main-content { padding-top: 20px; margin: 0 auto; max-width: 1100px; }

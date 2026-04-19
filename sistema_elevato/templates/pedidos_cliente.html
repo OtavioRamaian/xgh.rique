@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Elevato - Cadastro Cliente</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="painel-body">
+    <nav class="navbar">
+        <div class="logo-nav">ELEVATO <span>L&O</span></div>
+        <div class="user-info"><a href="{{ url_for('pedidos_menu') }}" style="color:white; margin-right:20px;">Voltar ao Menu</a></div>
+    </nav>
+
+    <div class="container-painel">
+        <h2 class="titulo-secao">1. Cadastro Cliente e Infos</h2>
+        
+        <form action="{{ url_for('pedidos_cliente') }}" method="POST" class="card-secao">
+            <div class="grid-form-2col">
+                <div class="input-group">
+                    <label>Contratante (Cliente)</label>
+                    <select name="id_cliente" required>
+                        <option value="">Selecione...</option>
+                        {% for c in clientes %}
+                            <option value="{{ c.id }}" {% if carrinho.get('id_cliente') == c.id|string %}selected{% endif %}>{{ c.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Contato (Telefone)</label>
+                    <input type="text" name="contato" value="{{ carrinho.get('contato', '') }}" required>
+                </div>
+                <div class="input-group">
+                    <label>Endereço</label>
+                    <input type="text" name="endereco" value="{{ carrinho.get('endereco', '') }}" required>
+                </div>
+                <div class="input-group">
+                    <label>Número</label>
+                    <input type="number" name="numero" value="{{ carrinho.get('numero', '') }}" required>
+                </div>
+                <div class="input-group">
+                    <label>Bairro</label>
+                    <input type="text" name="bairro" value="{{ carrinho.get('bairro', '') }}" required>
+                </div>
+                <div class="input-group">
+                    <label>Cidade</label>
+                    <input type="text" name="cidade" value="{{ carrinho.get('cidade', '') }}" required>
+                </div>
+                <div class="input-group">
+                    <label>Estado</label>
+                    <input type="text" name="estado" maxlength="2" value="{{ carrinho.get('estado', '') }}" required>
+                </div>
+                <div class="input-group">
+                    <label>CEP</label>
+                    <input type="text" name="cep" value="{{ carrinho.get('cep', '') }}" required>
+                </div>
+                <div class="input-group">
+                    <label>Pagamento</label>
+                    <input type="text" name="pagamento" value="{{ carrinho.get('pagamento', '') }}" required>
+                </div>
+                <div class="input-group">
+                    <label>Vendedor</label>
+                    <select name="id_vendedor" required>
+                        <option value="">Selecione...</option>
+                        {% for v in vendedores %}
+                            <option value="{{ v.id }}" {% if carrinho.get('id_vendedor') == v.id|string %}selected{% endif %}>{{ v.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>CPF/CNPJ</label>
+                    <input type="text" name="documento" value="{{ carrinho.get('documento', '') }}" required>
+                </div>
+            </div>
+            
+            <div style="text-align: right; margin-top: 20px;">
+                <button type="submit" class="btn-azul">Próximo ➔</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
